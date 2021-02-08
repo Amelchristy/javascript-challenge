@@ -25,9 +25,9 @@ function onclick(){
     let date = d3.select("#datetime").property("value");
     let filterData = tableData;
 
-    //Filter
+    //Filter matching date
     if(date) {
-        filterData = filterData.filter((sights) => sights.datetime === date);
+        filterData = filterData.filter((data) => data.datetime === date);
     }
     // Build Table with Filtered Data
     buildTable(filterData);

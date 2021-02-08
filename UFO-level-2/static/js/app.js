@@ -1,7 +1,3 @@
-// from data.js
-var tableData = data;
-
-// YOUR CODE HERE!
 var tableData = data;
 var button = d3.select("#filter-btn");
 var form = d3.select("#form");
@@ -19,39 +15,39 @@ function runEnter() {
     var inputState = d3.select("#state").property("value");
     var inputCountry = d3.select("#country").property("value");
     var inputShape = d3.select("#shape").property("value");
+    
+    // Filter by field matching input value
+    var filterDate = data.filter(data => data.datetime === inputDate);
+    console.log(filterDate);
+    var filterCity = data.filter(data => data.city === inputCity);
+    console.log(filterCity);
+    var filterState = data.filter(data => data.state === inputState);
+    console.log(filterState);
+    var filterCountry = data.filter(data => data.country === inputCountry);
+    console.log(filterCountry);
+    var filterShape = data.filter(data => data.shape === inputShape);
+    console.log(filterShape);
 
-//Filter by matched value
-    var cleanedDate = data.filter(data => data.datetime === inputDate);
-    console.log(cleanedDate);
-    var cleanedCity = data.filter(data => data.city === inputCity);
-    console.log(cleanedCity);
-    var cleanedState = data.filter(data => data.state === inputState);
-    console.log(cleanedState);
-    var cleanedCountry = data.filter(data => data.country === inputCountry);
-    console.log(cleanedCountry);
-    var cleanedShape = data.filter(data => data.shape === inputShape);
-    console.log(cleanedShape);
-
-    var cleanedData = data
+    var filterData = data
     if (inputDate) {
-      cleanedData = cleanedData.filter(data => data.datetime === inputDate)
+      filterData = filterData.filter(data => data.datetime === inputDate)
     }
     if (inputCity) {
-      cleanedData = cleanedData.filter(data => data.city === inputCity)
+      filterData = filterData.filter(data => data.city === inputCity)
     }
     if (inputState) {
-      cleanedData = cleanedData.filter(data => data.state === inputState)
+      filterData = filterData.filter(data => data.state === inputState)
     }
     if (inputCountry) {
-      cleanedData = cleanedData.filter(data => data.country === inputCountry)
+      filterData = filterData.filter(data => data.country === inputCountry)
     }
     if (inputShape) {
-      cleanedData = cleanedData.filter(data => data.shape === inputShape)
+      filterData = filterData.filter(data => data.shape === inputShape)
     }
 
     var tbody= d3.select("tbody");
 
-    cleanedData.forEach((sighting) => {
+    filterData.forEach((sighting) => {
         var row = tbody.append("tr"); 
         Object.entries(sighting).forEach(([key,value])=> {
         var cell = row.append("td");
@@ -63,5 +59,5 @@ function runEnter() {
 
 resetbtn.on("click", () => {
     tbody.html("");
-    console.log("Reset")
+    console.log("Table reset")
   })
